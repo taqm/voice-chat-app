@@ -2,16 +2,20 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import IndexPage from '../views/IndexPage.vue';
+import ChatPage from '../views/ChatPage.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
     component: IndexPage,
   },
-
+  {
+    path: '/chat/:channel_id',
+    name: 'Chat',
+    component: ChatPage,
+  },
 ];
 
 const router = new VueRouter({
