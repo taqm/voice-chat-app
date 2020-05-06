@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     toChatPage() {
-      console.log(this.user);
       this.$router.replace(`/chat/${this.user.uid}`);
     },
     async doLogin() {

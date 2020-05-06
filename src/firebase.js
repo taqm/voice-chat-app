@@ -8,5 +8,4 @@ const config = {
   authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.VUE_APP_FIREBASE_DB_URL,
 };
-
 initializeApp(config);

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import IndexPage from '../views/IndexPage.vue';
-import ChatPage from '../views/ChatPage.vue';
+import ChatPage from '../views/ChatPage/index.vue';
 
 Vue.use(VueRouter);
 
@@ -12,7 +12,7 @@ const routes = [
     component: IndexPage,
   },
   {
-    path: '/chat/:channel_id',
+    path: '/chat/:page_id',
     name: 'Chat',
     component: ChatPage,
   },

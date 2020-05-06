@@ -1,8 +1,13 @@
 {
   "rules": {
+    ".read": true,
     "users": {
       "$user_id": {
-        ".read": true,
+        ".write": "$user_id === auth.uid"
+      }
+    },
+    "peers": {
+      "$user_id": {
         ".write": "$user_id === auth.uid"
       }
     }
