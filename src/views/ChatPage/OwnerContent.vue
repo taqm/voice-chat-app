@@ -28,8 +28,17 @@ export default {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const peer = new Peer({ key: process.env.VUE_APP_SKYWAY_KEY });
 
+    const peerRef = db.ref(`/peers/${this.user.uid}`);
     peer.on('open', () => {
-      db.ref(`/peers/${this.user.uid}`).set({ id: peer.id });
+      peerRef.set({
+        id: peer.id,
+        isOnline: true,
+      });
+    });
+
+    peerRef.onDisconnect().set({
+      id: null,
+      isOnline: false,
     });
 
     peer.on('call', async (con) => {
@@ -37,7 +46,12 @@ export default {
       con.answer(stream);
       this.isConnected = true;
       this.$emit('connected', con);
+      peerRef.update({
+        isConnecting: true,
+      });
     });
+
+    // TODO 会話終了時のハンドリング
   },
 };
 </script>
