@@ -8,7 +8,6 @@ export default new Vuex.Store({
     user: {
       uid: null,
       displayName: null,
-      photoURL: null,
     },
   },
   mutations: {

@@ -8,6 +8,8 @@
 import { mapState } from 'vuex';
 import firebase from 'firebase/app';
 
+const db = firebase.database();
+
 export default {
   created() {
     if (this.user.uid) this.toChatPage();
@@ -27,6 +29,7 @@ export default {
   },
   methods: {
     toChatPage() {
+      console.log(this.user);
       this.$router.replace(`/chat/${this.user.uid}`);
     },
     async doLogin() {
@@ -34,9 +37,11 @@ export default {
       const p = new firebase.auth.TwitterAuthProvider();
       try {
         const res = await firebase.auth().signInWithPopup(p);
-        const { uid, displayName, photoURL } = res.user;
-        this.$store.commit('addUser', {
-          uid, displayName, photoURL,
+        const { uid, displayName } = res.user;
+        db.ref(`/users/${uid}`).set({ displayName }, () => {
+          this.$store.commit('addUser', {
+            uid, displayName,
+          });
         });
       } catch (err) {
         console.error(err);

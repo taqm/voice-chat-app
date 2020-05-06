@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase';
 import 'firebase/auth';
+import 'firebase/database';
 
 const config = {
   projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
