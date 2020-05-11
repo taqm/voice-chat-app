@@ -1,6 +1,6 @@
 <template>
   <div>
-    <owner-content v-if="isMyPage" @onConnected="connected" />
+    <owner-content v-if="isMyPage" @connected="connected" />
     <guest-content v-else :page-id="pageId" @connected="connected" />
     <audio ref="their" autoplay></audio>
   </div>
